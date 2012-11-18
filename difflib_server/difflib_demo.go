@@ -17,14 +17,14 @@
 package main
 
 import (
+	"difflib"
 	"fmt"
 	"html"
 	"html/template"
-	"strings"
-	"os"
 	"io/ioutil"
-	"difflib"
 	"net/http"
+	"os"
+	"strings"
 )
 
 var templateString = `
@@ -97,7 +97,7 @@ func diffHandler(filename1, filename2 string) http.HandlerFunc {
 	tmpl, _ := template.New("diffTemplate").Parse(templateString)
 	return func(w http.ResponseWriter, r *http.Request) {
 		err := tmpl.Execute(w, map[string]interface{}{
-			"Diff": template.HTML(diff),
+			"Diff":      template.HTML(diff),
 			"Filename1": filename1,
 			"Filename2": filename2,
 		})
