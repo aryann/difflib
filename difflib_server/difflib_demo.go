@@ -50,11 +50,6 @@ var templateString = `
       width: 50px;
     }
 
-    .added, .deleted {
-      background-color: black;
-      width: 100px;
-    }
-
     .added {
       background-color: green;
     }
