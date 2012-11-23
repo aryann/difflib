@@ -17,8 +17,8 @@
 package main
 
 import (
-	"difflib"
 	"fmt"
+	"github.com/aryann/difflib"
 	"html"
 	"html/template"
 	"io/ioutil"
@@ -26,6 +26,8 @@ import (
 	"os"
 	"strings"
 )
+
+var hostPort = "localhost:8080"
 
 var templateString = `
 <!doctype html>
@@ -82,9 +84,8 @@ func main() {
 		os.Exit(1)
 	}
 	http.HandleFunc("/", diffHandler(os.Args[1], os.Args[2]))
-	hostport := "localhost:8080"
-	fmt.Printf("Starting server at %s.\n", hostport)
-	err := http.ListenAndServe(hostport, nil)
+	fmt.Printf("Starting server at %s.\n", hostPort)
+	err := http.ListenAndServe(hostPort, nil)
 	if err != nil {
 		panic(err)
 	}
